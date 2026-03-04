@@ -1427,7 +1427,7 @@ html[dir="rtl"] .about-inner{
 
 /* Зеркалим только картинку игроков */
 [dir="rtl"] .hero-players {
-  transform: translateY(-50%) scaleX(-1);
+  transform: translateY(-50%);
   right: auto;
   left: 0;
 }
@@ -2248,4 +2248,8 @@ html[dir="rtl"] .about-inner{
     margin-right: auto;
   }
 
+}
+
+[dir="rtl"] .hero-players {
+  content: url("img/bizbet-rt.png");
 }
