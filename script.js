@@ -14,7 +14,7 @@ const translations = {
               FOR <span class="highlight">YOU</span>
             `,
       hero_sub: "Takes less than 30 seconds",
-      hero_online: "1,284 players online",
+      hero_online: "5000+ players online",
       hero_bonus: `Up to <span class="accent">300%</span> bonus`,
       hero_access: "Instant access",
       hero_btn: "GET BONUS NOW",
@@ -80,7 +80,7 @@ const translations = {
 
       hero_title: "هذا العرض لا يزال متاحاً لك",
       hero_sub: "يستغرق الأمر أقل من 30 ثانية",
-      hero_online: "1,284 لاعب متصل الآن",
+      hero_online: "5000+ لاعب متصل الآن",
       hero_bonus: `مكافأة تصل إلى <span class="accent">300٪</span>`,
       hero_access: "وصول فوري",
       hero_btn: "احصل على المكافأة الآن",
