@@ -2,73 +2,72 @@
 
 const translations = {
     en: {
-      nav_download: "Download",
-      nav_about: "About BizBet",
-      nav_promo: "Promo Code",
-      nav_crash: "Crash Game",
-      nav_security: "Security",
+      nav_download: "Télécharger",
+      nav_about: "À propos de BizBet",
+      nav_promo: "Code Promo",
+      nav_crash: "Jeu de Crash ",
 
       hero_title: `
-              THIS OFFER IS<br>
-              STILL AVAILABLE<br>
-              FOR <span class="highlight">YOU</span>
+              CETTE OFFRE EST<br>
+              DISPONIBLE<br>
+              POUR <span class="highlight">VOUS</span>
             `,
-      hero_sub: "Takes less than 30 seconds",
-      hero_online: "5000+ players online",
-      hero_bonus: `Up to <span class="accent">300%</span> bonus`,
-      hero_access: "Instant access",
-      hero_btn: "GET BONUS NOW",
+      hero_sub: "Prend moins de 30 secondes",
+      hero_online: "5000+ joueurs en ligne",
+      hero_bonus: `Jusqu'à <span class="accent">300%</span> de bonus`,
+      hero_access: "Accès instantané",
+      hero_btn: "OBTENEZ VOTRE BONUS",
 
       download_title: `
-          DOWNLOAD 
+          TÉLÉCHARGER
           <span class="brand">
             <span class="brand-biz">Biz</span><span class="brand-bet">Bet</span>
           </span>
         `,
-      download_text1: "Live odds. Instant access. Fast payouts.",
-      download_text2: "Next-level betting performance — built for speed, made for winners.",
-      download_text3: "Everything you need. Right in your pocket.",
-      download_btn: "Get the App Now",
+      download_text1: "Cotes en direct. Accès instantané. Paiements rapides.",
+      download_text2: "Performances de paris de haut niveau-conçues pour la vitesse, conçues pour les gagnants",
+      download_text3: "Tout ce que vous avez besoin. Directement dans votre poche",
+      download_btn: "Téléchargez l'application",
 
-      about_title: `What is 
+      about_title: `Qu'est-ce que  
                 <span class="brand">
                   <span class="brand-biz">Biz</span><span class="brand-bet">Bet</span>
                 </span>?`,
-      about_text1: "BizBet is a modern betting platform designed for fast access, instant games, and smooth performance on any device.",
-      about_text2: "Thousands of players choose BizBet every day to enjoy popular games, quick registration, and generous bonuses.",
+      about_text1: "BizBet est une plateforme de paris moderne conçue pour un accès rapide, des jeux instantanés et des performances fluides sur n'importe quel appareil.",
+      about_text2: "Des milliers de joueurs choisissent BizBet chaque jour pour profiter de jeux populaires, d'une inscription rapide et de bonus généreux.",
 
-      benefits_title: `Why players choose <span class="brand"><span class="brand-biz">Biz</span><span class="brand-bet">Bet</span></span>`,
-      benefit_fast_title: "Fast registration",
-      benefit_fast_text: "Start playing in minutes without complicated steps.",
-      benefit_bonus_title: "Big bonuses",
-      benefit_bonus_text: "Extra value for new and active players.",
-      benefit_secure_title: "Secure platform",
-      benefit_secure_text: "Trusted technology and stable performance.",
-      benefit_games_title: "Popular games",
-      benefit_games_text: "Sports, casino, and fast-paced crash games.",
+      benefits_title: `Pourquoi les joueurs choisissent <span class="brand"><span class="brand-biz">Biz</span><span class="brand-bet">Bet</span></span>`,
+      benefit_fast_title: "Inscription rapide",
+      benefit_fast_text: "Commencez à jouer en quelques minutes sans étapes compliquées.",
+      benefit_bonus_title: "Gros bonus",
+      benefit_bonus_text: "Valeur supplémentaire pour les joueurs nouveaux et actifs.",
+      benefit_secure_title: "Plateforme sécurisée",
+      benefit_secure_text: "Technologie de confiance et performances stables.",
+      benefit_games_title: "Jeux populaires",
+      benefit_games_text: "Sports, casino et jeux de crash au rythme effréné.",
 
-      try_now: "TRY NOW",
-      hide: "HIDE",
-      show: "SHOW",
+      try_now: "ESSAYEZ MAINTENANT",
+      hide: "CACHER",
+      show: "AFFICHER",
 
-      promo_title: `USE PROMO <span class="promo-accent">CODE</span>`,
+      promo_title: `UTILISER LE CODE <span class="promo-accent">PROMOTIONNEL</span>`,
       promo_code: "MAROC",
-      promo_sub: "Up to 300% bonus",
-      promo_copy: "COPY CODE",
-      promo_copied: "Copied",
+      promo_sub: "Jusqu'à 300% de bonus",
+      promo_copy: "COPIER LE CODE",
+      promo_copied: "Copié",
 
-      crash_title: "CRASH GAME",
-      crash_text_top: "Real-time multiplayer. One click can change everything.",
-      crash_text: "Watch the multiplier grow and cash out before it crashes. Fast rounds. One decision.",
-      crash_cta: "PLAY NOW",
+      crash_title: "JEU DE CRASH",
+      crash_text_top: "Multijoueur en temps réel. Un clic peut tout changer.",
+      crash_text: "Regardez le multiplicateur croître et encaisser avant qu'il ne plante. Rondes rapides. Une décision.",
+      crash_cta: "JOUEZ MAINTENANT",
 
-      trust_title: `TRUST / <span class="trust-accent">SECURITY</span>`,
-      trust_text: "BizBet uses modern security standards to provide a safe and stable gaming environment for all players.",
-      trust_text_extra: "Thousands of players choose BizBet every day to enjoy popular games, quick registration, and generous bonuses.",
-      footer_warning: `Gambling can be addictive.<br>
-      Play only if you are 18 or older`,
+      trust_title: `CONFIANCE /  <span class="trust-accent">SÉCURITÉ</span>`,
+      trust_text: "BizBet utilise des normes de sécurité modernes pour fournir un environnement de jeu sûr et stable à tous les joueurs.",
+      trust_text_extra: "Des milliers de joueurs choisissent BizBet chaque jour pour profiter de jeux populaires, d'une inscription rapide et de bonus généreux",
+      footer_warning: `Le jeu peut être addictif. <br>
+      Jouez seulement si vous avez 18 ans ou plus`,
 
-      footer_copy: "2026 BizBet. All rights reserved",
+      footer_copy: "2026 Bizbet. Tous droits réservés",
     },
 
     ar: {
@@ -260,12 +259,12 @@ promoMainBtn.addEventListener('click', (e) => {
     promoBtnIcon.style.display = "none";
 
     // можно добавить класс для эффекта
-    promoMainBtn.classList.add('copied');
+    promoMainBtn.classList.add('Copié');
 
     setTimeout(() => {
       promoBtnText.textContent = translations[currentLang].promo_copy;
       promoBtnIcon.style.display = "block";
-      promoMainBtn.classList.remove('copied');
+      promoMainBtn.classList.remove('Copié');
     }, 1500);
   });
 });

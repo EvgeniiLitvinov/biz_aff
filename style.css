@@ -75,11 +75,15 @@ body {
 
   display: flex;
   align-items: center;
-  gap: 47px;
+  gap: 30px;
 
   border: 1px solid rgba(255,255,255,0.15);
   border-radius: 10px;
 }
+
+[dir="rtl"] .nav {
+    gap: 47px;
+  }
 
 /* Links */
 .nav a {
@@ -1367,8 +1371,12 @@ body {
 
 .footer-nav {
   display: flex;
-  gap: 40px;
+  gap: 15px;
 }
+
+[dir="rtl"] .footer-nav {
+    gap: 40px;
+  }
 
 .footer-nav a {
   font-family: var(--font-family);
