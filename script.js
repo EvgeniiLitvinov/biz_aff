@@ -13,7 +13,7 @@ const translations = {
               POUR <span class="highlight">VOUS</span>
             `,
       hero_sub: "Prend moins de 30 secondes",
-      hero_online: "5000+ joueurs en ligne",
+      hero_online: "5007+ joueurs en ligne",
       hero_bonus: `Jusqu'à <span class="accent">300%</span> de bonus`,
       hero_access: "Accès instantané",
       hero_btn: "OBTENEZ VOTRE BONUS",
@@ -51,7 +51,7 @@ const translations = {
       show: "AFFICHER",
 
       promo_title: `UTILISER LE CODE <span class="promo-accent">PROMOTIONNEL</span>`,
-      promo_code: "MAROC",
+      promo_code: "MAROC300",
       promo_sub: "Jusqu'à 300% de bonus",
       promo_copy: "COPIER LE CODE",
       promo_copied: "Copié",
@@ -68,6 +68,11 @@ const translations = {
       Jouez seulement si vous avez 18 ans ou plus`,
 
       footer_copy: "2026 Bizbet. Tous droits réservés",
+
+      timer_title: "L'offre se termine dans",
+      timer_title_2: "dépêchez-vous",
+      timer_title_3: "obtenir un bonus",
+      timer_title_4: "LE BONUS<br> EXPIRE"
     },
 
     ar: {
@@ -119,7 +124,7 @@ const translations = {
       show: "إظهار",
 
       promo_title: `استخدم <span class="promo-accent">الرمز الترويجي</span>`,
-      promo_code: "MAROC",
+      promo_code: "MAROC300",
       promo_sub: "مكافأة تصل إلى 300%",
       promo_copy: "انسخ الزر",
       promo_copied: "نسخ",
@@ -136,12 +141,25 @@ const translations = {
       footer_warning: `قد يُسبب القمار الإدمان<br>
 لا تلعب إلا إذا كنت تبلغ من العمر 18 عامًا أو أكثر`,
       footer_copy: "2026 Bizbet جميع الحقوق محفوظة .",
+
+      timer_title: "العرض ينتهي خلال",
+      timer_title_2: "أسرع",
+      timer_title_3: "احصل على مكافأة",
+      timer_title_4: "المكافأة <br> ستنتهي"
     }
 };
 
 let currentLang = localStorage.getItem("siteLang") || "en";
 
 function setLanguage(lang) {
+  const nav = document.querySelector('.nav');
+
+  // 1. ОТКЛЮЧАЕМ АНИМАЦИЮ
+  nav.classList.add('no-transition');
+
+  // 2. ЗАКРЫВАЕМ МЕНЮ (важно!)
+  nav.classList.remove('active');
+
   currentLang = lang;
 
   document.documentElement.lang = lang;
@@ -154,12 +172,10 @@ function setLanguage(lang) {
     }
   });
 
-  // Обновляем текст кнопки promoToggle
-  if (promoWrapper?.classList.contains('hidden')) {
-    promoToggle.textContent = translations[lang].show;
-  } else {
-    promoToggle.textContent = translations[lang].hide;
-  }
+  // 3. ВОЗВРАЩАЕМ АНИМАЦИЮ ПОСЛЕ ПЕРЕРИСОВКИ
+  requestAnimationFrame(() => {
+    nav.classList.remove('no-transition');
+  });
 
   localStorage.setItem("siteLang", lang);
 }
@@ -289,7 +305,7 @@ document.querySelectorAll('a[href^="#"]:not(#promoMainBtn)').forEach(link => {
 
     e.preventDefault();
 
-    // если логотип или "#"
+    
     if (href === '#' || this.classList.contains('logo')) {
 
       isAutoScrolling = true;
@@ -437,3 +453,194 @@ if (magneticBtn && window.innerWidth > 992) {
   });
 
 }
+
+// ===== TIMER =====
+
+const STORAGE_KEY = "offerEndTime";
+
+const MIN_TIME = 180;
+const MAX_TIME = 300;
+
+let interval = 1000;
+let timer;
+let stage = 0;
+
+let isExpired = false;
+let restartTimeout = null;
+
+// ===== СОЗДАНИЕ =====
+function createNewTimer() {
+  const randomTime = Math.floor(Math.random() * (MAX_TIME - MIN_TIME)) + MIN_TIME;
+  const newEnd = Date.now() + randomTime * 1000;
+
+  localStorage.setItem(STORAGE_KEY, newEnd);
+  return newEnd;
+}
+
+// ===== ИНИЦИАЛИЗАЦИЯ =====
+let endTime = localStorage.getItem(STORAGE_KEY);
+
+if (!endTime || parseInt(endTime) <= Date.now()) {
+  endTime = createNewTimer();
+} else {
+  endTime = parseInt(endTime);
+}
+
+// ===== ТИК =====
+function tick() {
+  const now = Date.now();
+  const timeLeft = Math.floor((endTime - now) / 1000);
+
+  const timerEl = document.querySelector('.mini-timer');
+  const boxEl = document.querySelector('.fw-box');
+
+  if (!timerEl) return;
+
+  // ===== EXPIRE =====
+  if (timeLeft <= 0 && !isExpired) {
+    isExpired = true;
+
+    timerEl.classList.add("expired");
+
+    // всегда включаем красный режим при expire
+    timerEl.classList.remove('danger-soft');
+    timerEl.classList.add('danger');
+
+    boxEl?.classList.remove('danger-soft');
+    boxEl?.classList.add('danger');
+
+    if (navigator.vibrate) {
+      navigator.vibrate([200, 100, 200, 100, 300]);
+    }
+
+    
+
+    restartTimeout = setTimeout(() => {
+      endTime = createNewTimer();
+      isExpired = false;
+      stage = 0;
+
+      timerEl.classList.remove("danger", "danger-soft");
+      boxEl?.classList.remove("danger", "danger-soft");
+      timerEl.classList.remove("expired");
+
+      changeSpeed(1000);
+      tick();
+    }, 60000); // 1 минута
+
+    return;
+  }
+
+  if (isExpired) return;
+
+  // ===== ВРЕМЯ =====
+  const h = Math.floor(timeLeft / 3600);
+  const m = Math.floor((timeLeft % 3600) / 60);
+  const s = timeLeft % 60;
+
+  document.getElementById("h").textContent = String(h).padStart(2, '0');
+  document.getElementById("m").textContent = String(m).padStart(2, '0');
+  document.getElementById("s").textContent = String(s).padStart(2, '0');
+
+  // ===== УСКОРЕНИЕ =====
+  if (timeLeft < 120 && stage < 10) {
+    changeSpeed(700);
+    stage = 10;
+  }
+
+  if (timeLeft < 60 && stage < 20) {
+    changeSpeed(400);
+    stage = 20;
+  }
+
+  if (timeLeft < 20 && stage < 30) {
+    changeSpeed(250);
+    stage = 30;
+  }
+
+  // ===== СТАДИИ =====
+  if (timeLeft <= 180 && timeLeft > 120 && stage < 100) {
+    timerEl.classList.add('danger-soft');
+    boxEl?.classList.add('danger-soft');
+    stage = 100;
+  }
+
+  if (timeLeft <= 120 && stage < 200) {
+    timerEl.classList.remove('danger-soft');
+    boxEl?.classList.remove('danger-soft');
+
+    timerEl.classList.add('danger');
+    boxEl?.classList.add('danger');
+
+    stage = 200;
+  }
+}
+
+// ===== СКОРОСТЬ =====
+function changeSpeed(newInterval) {
+  clearInterval(timer);
+  timer = setInterval(tick, newInterval);
+}
+
+// ===== СТАРТ =====
+timer = setInterval(tick, interval);
+tick();
+
+// ===== ПОЯВЛЕНИЕ ВИДЖЕТА =====
+setTimeout(() => {
+  document.querySelector('.floating-widget')?.classList.add('show');
+}, 3000);
+
+// счётчик игроков
+
+
+let current = parseInt(localStorage.getItem("playersCount")) || 5007;
+let target = current;
+
+// плавная анимация числа
+function animateCount() {
+  const el = document.getElementById("playersCount");
+  if (!el) return;
+
+  if (current !== target) {
+    const diff = target - current;
+
+    // шаг (чем больше разница — тем быстрее)
+    current += Math.sign(diff) * Math.ceil(Math.abs(diff) / 10);
+
+    localStorage.setItem("playersCount", current);
+  }
+
+  updateText(current);
+
+  requestAnimationFrame(animateCount);
+}
+
+// обновление цели каждые 2.5 сек
+function updateTarget() {
+  const change = Math.floor(Math.random() * 6) + 5; // 5–10
+  const direction = Math.random() < 0.7 ? 1 : -1;
+
+  target += change * direction;
+
+  // ограничения
+  target = Math.max(4900, Math.min(5237, target));
+}
+
+// вывод текста (с учётом языка)
+function updateText(value) {
+  const el = document.getElementById("playersCount");
+  if (!el) return;
+
+  const isArabic = document.documentElement.lang === "ar";
+
+  if (isArabic) {
+    el.textContent = `${value}+ لاعب متصل الآن`;
+  } else {
+    el.textContent = `${value}+ joueurs en ligne`;
+  }
+}
+
+// старт
+animateCount();
+setInterval(updateTarget, 2500);

@@ -1587,6 +1587,14 @@ html[dir="rtl"] .about-inner{
   
   }
 
+  #playersCount {
+    white-space: nowrap;
+  }
+
+  .hero-list li {
+    flex-wrap: nowrap;
+  }
+
   .hero-inner {
     flex-direction: column;
     align-items: center;
@@ -1626,13 +1634,15 @@ html[dir="rtl"] .about-inner{
   /* ===== LIST ===== */
 
   .hero-list {
-    max-width: 340px;     /* одинаковая визуальная ширина */
+       /* одинаковая визуальная ширина */
     margin: 0 auto 30px;
+
+    width: fit-content;
   }
 
   .hero-list li {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 12px;
   }
@@ -1881,7 +1891,7 @@ html[dir="rtl"] .about-inner{
   .promo-btn {
     margin-inline-start: 0px;
     height: 44px;
-    width: 140px;
+    width: 180px;
     font-size: 13px;
   }
 
@@ -2260,4 +2270,411 @@ html[dir="rtl"] .about-inner{
 
 [dir="rtl"] .hero-players {
   content: url("img/bizbet-rt.png");
+}
+
+.no-transition {
+  transition: none !important;
+}
+
+/* ===== MINI TIMER ===== */
+
+.mini-timer {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;   /* центр по горизонтали */
+
+  white-space: nowrap;
+
+  text-align: center;    /* текст по центру */
+
+  position: static;
+
+  /* 👇 вот тут регулируешь положение */
+  right: 38%;
+  top: 62%;
+
+  transform: translateY(-50%);
+
+  width: 220px;
+  height: 110px;
+
+  padding: 16px;
+
+  border-radius: 12px;
+
+  background: rgba(0,0,0,0.85);
+  border: 1px solid rgba(255,119,0,0.5);
+
+  box-shadow: 0 0 20px rgba(255,119,0,0.3);
+
+  z-index: 5;
+
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+/* -- зеркальный кот --*/
+
+/* ===== RTL WIDGET (ФИНАЛ) ===== */
+
+[dir="rtl"] .floating-widget {
+  right: auto;
+  left: 20px;
+}
+
+[dir="rtl"] .fw-box {
+  left: auto !important;
+  right: -30px !important;
+  text-align: center;
+  margin-right: -10px;
+}
+
+[dir="rtl"] .fw-cat {
+  right: auto;
+  left: -20px;
+  animation: catIdleRTL 2s ease-in-out infinite;
+}
+
+@keyframes catIdleRTL {
+  0%   { transform:  translateY(0); }
+  50%  { transform:  translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+[dir="rtl"] .fw-ball {
+  right: auto;
+  right: 100px;
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .mini-title {
+  margin-bottom: 0px;
+}
+
+[dir="rtl"] .mini-sub {
+  margin-bottom: 0px;
+  margin-top: 0;
+}
+
+[dir="rtl"] .mini-time {
+  line-height: 2ch;
+}
+
+[dir="rtl"] .mini-title,
+[dir="rtl"] .mini-sub {
+  line-height: 1.1;
+  font-size: 17px;
+  padding-bottom: 7px;
+}
+
+[dir="rtl"] .fw-btn {
+  font-size: 12px;
+  padding: 2px 20px 2px 20px;
+}
+
+[dir="rtl"] .mini-timer.expired .expired-text {
+  line-height: 1.3;
+}
+
+.cat-rtl { 
+  display: none;
+}
+
+[dir="rtl"] .cat-ltr { display: none; }
+[dir="rtl"] .cat-rtl { display: block; }
+
+
+.mini-title {
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 700;
+  color: #ff7700;
+}
+
+.mini-sub {
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #aaa;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.mini-time {
+
+  direction: ltr;
+  font-size: 28px;
+  font-weight: 900;
+  color: #fff;
+
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(255,119,0,0.6);
+}
+
+
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 992px) {
+  .mini-timer {
+    position: static;
+    transform: none;
+
+    margin: 20px auto;
+
+    width: 200px;
+    text-align: center;
+  }
+
+}
+
+/* ===== ЛЁГКОЕ ДАВЛЕНИЕ ===== */
+.fw-box.danger-soft {
+  
+  border-color: #ff7700;
+  animation: softPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes softPulse {
+  0% {
+    box-shadow: 0 0 10px rgba(255,119,0,0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255,119,0,0.9);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(255,119,0,0.3);
+  }
+}
+
+/* ===== HARD DANGER (карточка) ===== */
+.fw-box.danger {
+  border-color: #ff2a2a;
+  box-shadow: 0 0 25px rgba(255,0,0,0.6);
+
+  animation: shakeBox 0.3s infinite;
+}
+
+.fw-box.danger-soft {
+  border-color: #ff7700;
+  box-shadow: 0 0 30px rgba(255,119,0,0.8);
+}
+
+/* усиливаем цифры внутри */
+.fw-box.danger .mini-time {
+  animation: pulseDanger 0.6s infinite;
+}
+
+/* отдельный shake чтобы не ломал позицию */
+@keyframes shakeBox {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(1px, -1px); }
+  50%  { transform: translate(-1px, 1px); }
+  75%  { transform: translate(1px, 1px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* ===== АНИМАЦИИ ===== */
+
+@keyframes pulseDanger {
+  0% { transform: scale(1); color: #fff; }
+  50% { transform: scale(1.1); color: #ff2a2a; }
+  100% { transform: scale(1); color: #fff; }
+}
+
+@keyframes shake {
+  0%   { transform: translateY(-50%) translate(0, 0); }
+  25%  { transform: translateY(-50%) translate(0.5px, -0.5px); }
+  50%  { transform: translateY(-50%) translate(-0.5px, 0.5px); }
+  75%  { transform: translateY(-50%) translate(0.5px, 0.5px); }
+  100% { transform: translateY(-50%) translate(0, 0); }
+}
+
+/* --- CAT --- */
+
+.floating-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+  width: 240px;
+  height: 140px;
+
+  z-index: 9999;
+}
+
+.floating-widget .mini-timer {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+
+  width: auto;
+  height: auto;
+  padding: 0;
+
+  transform: none !important;
+}
+
+.floating-widget .mini-timer.danger ~ .fw-cat {
+  animation: catKick 0.8s infinite;
+}
+
+.floating-widget .mini-timer.danger ~ .fw-ball {
+  animation: ballKick 0.8s infinite;
+}
+
+.fw-cat {
+  position: absolute;
+  bottom: 0;
+  right: -20px;
+
+  width: 120px;
+
+  z-index: 2;
+
+  animation: catIdle 2s ease-in-out infinite;
+}
+
+@keyframes catIdle {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+.fw-ball {
+  position: absolute;
+  bottom: 10px;
+  right: 85px;
+
+  width: 36px;
+
+  z-index: 1;
+
+  animation: ballKick 1.8s infinite;
+}
+
+@keyframes ballKick {
+  0%   { transform: translateX(0); }
+  30%  { transform: translateX(-20px); }
+  60%  { transform: translateX(0); }
+  100% { transform: translateX(0); }
+}
+
+/* --- кото-таймер --- */
+
+.fw-box {
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  left: -46px;
+  bottom: 0px;
+
+  width: 190px;
+  padding: 14px;
+
+  border-radius: 12px;
+  background: rgba(0,0,0,0.85);
+  border: 1px solid rgba(255,119,0,0.5);
+
+  text-align: center;
+  gap: 6px;
+}
+
+.fw-timer {
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.fw-btn {
+  text-transform: uppercase;
+  display: block;
+  background: #ff7700;
+  color: #fff;
+  font-size: 12px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+/* --- появление кота --- */
+
+.floating-widget {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.4s;
+}
+
+.floating-widget.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* -- мобильный котофей -- */
+
+@media (max-width: 992px) {
+  .fw-cat,
+  .fw-ball {
+    display: none;
+  }
+
+  .floating-widget {
+    display: none !important;
+  }
+}
+
+/* ===== TIMER EXPIRED ===== */
+
+.mini-timer {
+  min-width: 160px; /* чтобы не сужался */
+}
+
+.expired-text {
+  display: none;
+}
+
+.mini-timer.expired .mini-time {
+  display: none;
+}
+
+.mini-timer.expired .expired-text {
+  display: block;
+  font-size: 30px;
+  color: #ff0000;
+  font-weight: 700;
+  letter-spacing: 2px;
+
+  animation: blink 0.6s infinite;
+  text-shadow: 0 0 10px red, 0 0 20px red;
+}
+
+/* мигание как у "опасного" таймера */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+/* скрываем тексты при expire */
+.mini-timer.expired .mini-title,
+.mini-timer.expired .mini-sub {
+  display: none;
+}
+
+#playersCount {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
 }
