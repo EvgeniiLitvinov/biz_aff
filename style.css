@@ -372,6 +372,7 @@ body {
   color: #fff;
 }
 
+
 /* ---- ГАЛОЧКИ ---- */
 
 .check {
@@ -1640,17 +1641,22 @@ html[dir="rtl"] .about-inner{
     width: fit-content;
   }
 
-  .hero-list li {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 12px;
+
+  [dir="rtl"] .hero-list {
+    direction: rtl;
   }
+
+
+  [dir="rtl"] .check {
+  flex-shrink: 0;
+}
 
   /* RTL порядок галочки */
 
   [dir="rtl"] .hero-list li {
-    flex-direction: row-reverse;
+    justify-content: flex-start;
+    text-align: right;
+    
   }
 
   /* ===== BUTTON ===== */
@@ -2421,10 +2427,12 @@ html[dir="rtl"] .about-inner{
     position: static;
     transform: none;
 
-    margin: 20px auto;
-
     width: 200px;
     text-align: center;
+  }
+
+  .mini-timer.expired .expired-text {
+    font-size: 18px !important; 
   }
 
 }
@@ -2670,11 +2678,195 @@ html[dir="rtl"] .about-inner{
 }
 
 #playersCount {
-  animation: pulse 1.5s infinite;
+  font-weight: 700;
+  color: #ffffff;
+
+  text-shadow:
+    0 0 5px rgba(255, 190, 0, 0.55),
+    0 0 10px rgba(255, 140, 0, 0.45),
+    0 0 18px rgba(255, 110, 0, 0.35),
+    0 0 28px rgba(255, 140, 0, 0.2);
+
+  animation: onlinePulse 1.4s ease-in-out infinite;
 }
 
-@keyframes pulse {
-  0% { opacity: 1; }
-  50% { opacity: 0.7; }
-  100% { opacity: 1; }
+@keyframes onlinePulse {
+
+  0% {
+    transform: scale(1);
+    
+    text-shadow:
+      0 0 4px rgba(255, 190, 0, 0.45),
+      0 0 8px rgba(255, 140, 0, 0.35),
+      0 0 14px rgba(255, 110, 0, 0.25),
+      0 0 22px rgba(255, 140, 0, 0.15);
+  }
+
+  50% {
+    transform: scale(1.06);
+
+    text-shadow:
+      0 0 7px rgba(255, 190, 0, 0.9),
+      0 0 14px rgba(255, 140, 0, 0.75),
+      0 0 24px rgba(255, 110, 0, 0.55),
+      0 0 38px rgba(255, 140, 0, 0.35);
+  }
+
+  100% {
+    transform: scale(1);
+
+    text-shadow:
+      0 0 4px rgba(255, 190, 0, 0.45),
+      0 0 8px rgba(255, 140, 0, 0.35),
+      0 0 14px rgba(255, 110, 0, 0.25),
+      0 0 22px rgba(255, 140, 0, 0.15);
+  }
+}
+
+@media (max-width: 992px) {
+
+  /* скрываем кота */
+  .fw-cat,
+  .fw-ball {
+    display: none !important;
+  }
+
+  /* центрируем весь виджет */
+  .floating-widget {
+    position: fixed !important;
+
+    left: 50% !important;
+    top: 58% !important;
+
+    transform: translate(-50%, -50%) !important;
+
+    width: auto !important;
+    height: auto !important;
+
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 9999;
+  }
+
+  /* сам блок */
+  .fw-box {
+    position: relative !important;
+
+    left: 0 !important;
+    right: 0 !important;
+    bottom: -28px !important;
+
+    width: 165px !important;
+
+    padding: 12px 10px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    text-align: center !important;
+
+    gap: 6px !important;
+
+    border-radius: 14px;
+  }
+
+  /* заголовок */
+  .mini-title {
+    font-size: 9px !important;
+    line-height: 1.3 !important;
+
+    margin: 0 !important;
+
+    text-align: center !important;
+  }
+
+  /* подзаголовок */
+  .mini-sub {
+    font-size: 8px !important;
+    line-height: 1.3 !important;
+
+    margin: 0 !important;
+
+    text-align: center !important;
+  }
+
+  /* таймер */
+  .mini-time {
+    font-size: 16px !important;
+    line-height: 0 !important;
+
+    margin: 2px 0 4px !important;
+
+    text-align: center !important;
+
+    letter-spacing: 0 !important;
+  }
+
+  /* кнопка */
+  .fw-btn {
+    width: 100px !important;
+    height: 24px !important;
+
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto !important;
+
+    font-size: 8px !important;
+
+    padding: 0 8px !important;
+  }
+
+  /* окно ниже */
+.floating-widget {
+  top: 66% !important;
+}
+
+/* контент по центру */
+.fw-box {
+  min-height: auto !important;
+  height: auto !important;
+
+  padding: 12px 10px !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+
+  align-items: center !important;
+  justify-content: center !important;
+
+  gap: 6px !important;
+}
+
+/* верхний текст */
+.mini-title {
+  line-height: 1.5 !important;
+  margin-bottom: 6px !important;
+}
+
+/* второй текст */
+.mini-sub {
+  line-height: 1.5 !important;
+
+  margin-top: 2px !important;
+  margin-bottom: 8px !important;
+}
+
+/* таймер */
+.mini-time {
+  margin-top: 4px !important;
+  margin-bottom: 10px !important;
+}
+
+/* кнопка */
+.fw-btn {
+  margin-top: 4px !important;
+}
+
 }
