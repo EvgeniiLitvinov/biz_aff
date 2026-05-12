@@ -2635,9 +2635,6 @@ html[dir="rtl"] .about-inner{
     display: none;
   }
 
-  .floating-widget {
-    display: none !important;
-  }
 }
 
 /* ===== TIMER EXPIRED ===== */
@@ -2735,8 +2732,8 @@ html[dir="rtl"] .about-inner{
   .floating-widget {
     position: fixed !important;
 
-    left: 50% !important;
-    top: 58% !important;
+    left: 23% !important;
+    top: 65% !important;
 
     transform: translate(-50%, -50%) !important;
 
