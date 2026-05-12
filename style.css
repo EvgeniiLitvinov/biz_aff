@@ -2820,10 +2820,6 @@ html[dir="rtl"] .about-inner{
     padding: 0 8px !important;
   }
 
-  /* окно ниже */
-.floating-widget {
-  top: 66% !important;
-}
 
 /* контент по центру */
 .fw-box {
